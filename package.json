@@ -1,0 +1,17 @@
+{
+  "name": "chatgpme",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000C\u0000h\u0000a\u0000t\u0000G\u0000P\u0000M\u0000e\u0000\r\u0000 \u0000",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.7",
+    "defang": "^0.5.45",
+    "express": "^4.21.0"
+  }
+}
