@@ -12,7 +12,7 @@ const port = process.env.PORT || 3000;
 // prompt for telling cohere about the project
 const header_prompt =   "I'm making a game where the user is trying to impersonate an AI. Please judge all responses by seeing how similar they are to what an AI would say. \
                         There are four categories of prompts - Grammar, Tone, Word Choice, Length - each scored out of 25 for a total score of 100. A response that's extremely similar to an AI should score 100, while one \
-                        that is too 'human' should receive 0 points. For the output, you should output the number out of 25 for that category, followed by a space, then exactly one short, concise sentence justifying the mark. \
+                        that is too 'human' should receive 0 points. For the output, you should output the integer out of 25 for that category, followed by a space, then exactly one short, concise sentence justifying the mark. \
                         As an example, for Grammar: '18 Response contained a comma splice and two mispelled words'";
 
 cohere.init(process.env.COHERE_API_KEY);
@@ -44,8 +44,14 @@ app.get('/compare', async(req, res) => {
         while ('0' <= cohereGrammarResponse[numIndex] && cohereGrammarResponse[numIndex] <= '9') numIndex++;
 
         res.json({
-            score: cohereGrammarResponse
-        })
+            score: parseInt(cohereGrammarResponse.substring(0, numIndex), 10),
+            feedBack: cohereGrammarResponse.substring(numIndex+1)
+        });
+    } catch (error) {
+        res.status(500).json({ error: "error processing the grammar request"});
     }
+});
 
-})
+app.listen(port, () => {
+    console.log(`server running on port ${port}`);
+});
