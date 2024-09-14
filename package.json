@@ -11,8 +11,10 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^1.7.7",
+    "cohere": "^1.1.1",
     "cohere-ai": "^7.13.1",
     "defang": "^0.5.45",
+    "dotenv": "^16.4.5",
     "express": "^4.21.0"
   }
 }
