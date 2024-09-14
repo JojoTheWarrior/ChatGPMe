@@ -23,6 +23,16 @@ const cohereClient = new CohereClient({
     token: `${process.env.COHERE_API_KEY}`
 });
 
+try {
+    response = cohereClient.chat(
+        model="command-r",
+        message="Give me a 'bonk'"
+    );
+    
+    console.log(response);
+} catch (error){
+    console.log("error");
+}
 
 
 // function for when user sends their typed response
